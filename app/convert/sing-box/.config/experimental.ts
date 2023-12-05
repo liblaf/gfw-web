@@ -13,7 +13,7 @@ export function template(): Experimental {
       external_controller: "127.0.0.1:9090",
       external_ui: "ui",
       external_ui_download_detour:
-        "https://g.liblaf.me/proxy/github.com/liblaf/Yacd-meta/archive/gh-pages.zip",
+        "https://gfw.liblaf.me/proxy/github.com/liblaf/Yacd-meta/archive/gh-pages.zip",
       external_ui_download_url: "DIRECT",
     },
   };
