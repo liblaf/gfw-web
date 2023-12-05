@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { TEST_URL } from "../urls";
 import { Config, template } from "./.config";
 import { Outbound, Selector, URLTest } from "./.config/outbound";
 import { fetchOutbounds } from "./group";
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
         outbounds: outbounds[group].map(
           (outbound: Outbound): string => outbound.tag,
         ),
-        url: process.env.TEST_URL,
+        url: TEST_URL,
       });
     }
   }

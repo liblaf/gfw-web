@@ -1,4 +1,5 @@
 import { tw2cn } from "cjk-conv";
+import { SUB_API } from "../urls";
 import { Config } from "./.config";
 import { Outbound } from "./.config/outbound";
 
@@ -49,7 +50,7 @@ const GROUP_PATTERNS: Record<string, Record<string, RegExp>> = {
 export async function fetchOutbounds(
   sub: URL,
 ): Promise<Record<string, Outbound[]>> {
-  const url = new URL("/sub", process.env.SUB_API);
+  const url = new URL("/sub", SUB_API);
   url.searchParams.set("url", sub.href);
   url.searchParams.set("target", "singbox");
   const response = await fetch(url);

@@ -1,3 +1,5 @@
+import { TEST_URL } from "../../urls";
+
 export type Outbound = IOutBound | HTTP | Selector | URLTest;
 
 interface IOutBound {
@@ -36,7 +38,7 @@ export function template(): Outbound[] {
       type: "urltest",
       tag: "AUTO",
       outbounds: ["WARP"],
-      url: process.env.TEST_URL,
+      url: TEST_URL,
     },
     {
       type: "direct",
