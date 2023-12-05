@@ -1,6 +1,6 @@
 import { tw2cn } from "cjk-conv";
-import { Config } from "./_config";
-import { Outbound } from "./_config/outbound";
+import { Config } from "./.config";
+import { Outbound } from "./.config/outbound";
 
 const FILTER_OUT_TYPES = new Set([
   "direct",

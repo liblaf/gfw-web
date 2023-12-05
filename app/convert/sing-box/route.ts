@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Config, template } from "./_config";
-import { Outbound, Selector, URLTest } from "./_config/outbound";
+import { Config, template } from "./.config";
+import { Outbound, Selector, URLTest } from "./.config/outbound";
 import { fetchOutbounds } from "./group";
 
-export const runtime: string = "edge";
+export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
   const sub: string[] =
