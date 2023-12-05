@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { TEST_URL } from "../urls";
-import { Config, template } from "./.config";
-import { Outbound, Selector, URLTest } from "./.config/outbound";
+import { Config, template } from "./config";
+import { Outbound, Selector, URLTest } from "./config/outbound";
 import { fetchOutbounds } from "./group";
 
 export const runtime = "edge";
