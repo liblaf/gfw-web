@@ -1,3 +1,5 @@
+import { proxy } from "@/app/convert/urls";
+
 export interface Route {
   geoip?: GeoIP;
   geosite?: GeoSite;
@@ -28,13 +30,15 @@ interface RouteRule {
 export function template(): Route {
   return {
     geoip: {
-      download_url:
-        "https://g.liblaf.me/proxy/github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      download_url: proxy(
+        "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      ),
       download_detour: "DIRECT",
     },
     geosite: {
-      download_url:
-        "https://g.liblaf.me/proxy/github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      download_url: proxy(
+        "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      ),
       download_detour: "DIRECT",
     },
     rules: [
