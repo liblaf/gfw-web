@@ -1,0 +1,19 @@
+words:
+  - apiv
+  - gomod
+  - liblaf
+  - lipulai
+  - nthu
+ignorePaths:
+  - "*-lock.*"
+  - "*.lock"
+dictionaries:
+  - bash
+  - cpp
+  - cpp-refined
+  - dotnet
+  - makefile
+  - npm
+  - php
+  - typescript
+allowCompoundWords: true
