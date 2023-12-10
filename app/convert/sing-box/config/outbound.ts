@@ -1,4 +1,4 @@
-import { TEST_URL } from "../../urls";
+import { TEST_URL } from "@/app/convert/urls";
 
 export type Outbound = IOutBound | HTTP | Selector | URLTest;
 
@@ -31,13 +31,13 @@ export function template(): Outbound[] {
     {
       type: "selector",
       tag: "PROXY",
-      outbounds: ["AUTO", "WARP"],
-      default: "AUTO",
+      outbounds: ["AUTO", "☁️ WARP"],
+      default: "🇺🇸 US 美国",
     },
     {
       type: "urltest",
       tag: "AUTO",
-      outbounds: ["WARP"],
+      outbounds: ["☁️ WARP"],
       url: TEST_URL,
     },
     {
@@ -54,7 +54,7 @@ export function template(): Outbound[] {
     },
     {
       type: "http",
-      tag: "WARP",
+      tag: "☁️ WARP",
       server: "127.0.0.1",
       server_port: 40000,
     },
