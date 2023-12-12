@@ -59,6 +59,10 @@ export function template(): Route {
         outbound: "DIRECT",
       },
       {
+        geosite: ["bing", "openai"],
+        outbound: "🇺🇸 US 美国",
+      },
+      {
         domain: ["chat.liblaf.me"],
         outbound: "PROXY",
       },

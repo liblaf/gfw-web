@@ -31,12 +31,12 @@ export function template(): Outbound[] {
     {
       type: "selector",
       tag: "PROXY",
-      outbounds: ["AUTO", "☁️ WARP"],
-      default: "🇺🇸 US 美国",
+      outbounds: ["🚀 AUTO", "☁️ WARP"],
+      default: "🚀 AUTO",
     },
     {
       type: "urltest",
-      tag: "AUTO",
+      tag: "🚀 AUTO",
       outbounds: ["☁️ WARP"],
       url: TEST_URL,
     },
