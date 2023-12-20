@@ -51,15 +51,3 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm run lint
-
-  check:
-    name: Check
-    needs:
-      - build
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check
-        uses: re-actors/alls-green@release/v1
-        with:
-          jobs: ${{ toJSON(needs) }}

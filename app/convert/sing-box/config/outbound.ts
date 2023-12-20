@@ -31,13 +31,19 @@ export function template(): Outbound[] {
     {
       type: "selector",
       tag: "PROXY",
-      outbounds: ["🚀 AUTO", "☁️ WARP"],
+      outbounds: ["🚀 AUTO", "💬 OpenAI", "☁️ WARP"],
       default: "🚀 AUTO",
     },
     {
       type: "urltest",
       tag: "🚀 AUTO",
       outbounds: ["☁️ WARP"],
+      url: TEST_URL,
+    },
+    {
+      type: "urltest",
+      tag: "💬 OpenAI",
+      outbounds: [],
       url: TEST_URL,
     },
     {

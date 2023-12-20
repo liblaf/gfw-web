@@ -6,6 +6,13 @@ import { fetchOutbounds } from "./group";
 
 export const runtime = "edge";
 
+const OPEN_AI_EXCLUDE = new Set([
+  "🇭🇰 HK 香港",
+  "🇷🇺 RU 俄罗斯",
+  // "🇹🇼 TW 台湾",
+  "🇺🇦 UA 乌克兰",
+]);
+
 export async function GET(request: NextRequest) {
   const sub: string[] =
     request.nextUrl.searchParams.get("sub")?.split("|") || [];
@@ -30,9 +37,17 @@ export async function GET(request: NextRequest) {
     {},
   );
   const config: Config = template();
+  const proxy: Selector = config.outbounds.find(
+    (outbound: Outbound): boolean => outbound.tag == "PROXY",
+  ) as Selector;
+  const auto: URLTest = config.outbounds.find(
+    (outbound: Outbound): boolean => outbound.tag == "🚀 AUTO",
+  ) as URLTest;
+  const open_ai: URLTest = config.outbounds.find(
+    (outbound: Outbound): boolean => outbound.tag == "💬 OpenAI",
+  ) as URLTest;
   for (const group in outbounds) {
-    (config.outbounds[0] as Selector).outbounds.push(group);
-    (config.outbounds[1] as URLTest).outbounds.push(group);
+    proxy.outbounds.push(group);
     if (group == "🏳️‍🌈 OT 其他") {
       config.outbounds.push({
         type: "selector",
@@ -42,6 +57,8 @@ export async function GET(request: NextRequest) {
         ),
       });
     } else {
+      auto.outbounds.push(group);
+      if (!OPEN_AI_EXCLUDE.has(group)) open_ai.outbounds.push(group);
       config.outbounds.push({
         type: "urltest",
         tag: group,
