@@ -60,14 +60,10 @@ export function template(): Route {
       },
       {
         geosite: ["bing", "openai"],
-        outbound: "🇺🇸 US 美国",
+        outbound: "💬 OpenAI",
       },
       {
-        domain: ["chat.liblaf.me"],
-        outbound: "PROXY",
-      },
-      {
-        domain_suffix: ["byr.pt", "liblaf.me"],
+        domain_suffix: ["byr.pt"],
         geoip: ["cn", "private"],
         geosite: ["cn"],
         outbound: "DIRECT",

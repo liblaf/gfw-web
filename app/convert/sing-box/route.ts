@@ -37,6 +37,18 @@ export async function GET(request: NextRequest) {
     {},
   );
   const config: Config = template();
+  const tun: boolean = request.nextUrl.searchParams.get("tun") == "true";
+  if (tun) {
+    config.inbounds.push({
+      type: "tun",
+      tag: "tun-in",
+      inet4_address: "172.19.0.1/30",
+      auto_route: true,
+      strict_route: true,
+      stack: "mixed",
+      sniff: true,
+    });
+  }
   const proxy: Selector = config.outbounds.find(
     (outbound: Outbound): boolean => outbound.tag == "PROXY",
   ) as Selector;
@@ -56,6 +68,10 @@ export async function GET(request: NextRequest) {
           (outbound: Outbound): string => outbound.tag,
         ),
       });
+    } else if (group == "💬 OpenAI") {
+      open_ai.outbounds.push(
+        ...outbounds[group].map((outbound: Outbound): string => outbound.tag),
+      );
     } else {
       auto.outbounds.push(group);
       if (!OPEN_AI_EXCLUDE.has(group)) open_ai.outbounds.push(group);

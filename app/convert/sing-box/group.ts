@@ -12,11 +12,54 @@ const FILTER_OUT_TYPES = new Set([
 ]);
 
 const PROVIDERS: Record<string, string> = {
+  "apiv1.v27qae.com": "FlyingBird",
   "apiv2.lipulai.com": "FastLink",
   "www.sub-nthu.com": "NTHU.CC",
 };
 
 const GROUP_PATTERNS: Record<string, Record<string, RegExp>> = {
+  FlyingBird: {
+    "🇦🇷 AR 阿根廷": /Argentina-\d{2}/,
+    "🇬🇧 UK 英国": /UK-\d{2}/,
+    "🇭🇰 HK 香港": /Hong Kong-\d{2}/,
+    "🇯🇵 JP 日本": /Japan-\d{2}/,
+    "🇲🇾 MY 马来西亚": /Malaysia-\d{2}/,
+    "🇷🇺 SG 新加坡": /Singapore-\d{2}/,
+    "🇹🇷 TR 土耳其": /Turkey-\d{2}/,
+    "🇹🇼 TW 台湾": /Taiwan-\d{2}/,
+    "🇺🇸 US 美国": /USA-\d{2}/,
+  },
+  FastLink: {
+    "🇦🇷 AR 阿根廷": /阿根廷/,
+    "🇦🇺 AU 澳大利亚": /澳大利亚/,
+    "🇧🇷 BR 巴西": /巴西/,
+    "🇨🇦 CA 加拿大": /加拿大/,
+    "🇩🇪 DE 德国": /德国/,
+    "🇫🇷 FR 法国": /法国/,
+    "🇬🇧 UK 英国": /英国/,
+    "🇭🇰 HK 香港": /香港|广港/,
+    "🇮🇳 IN 印度": /印度/,
+    "🇯🇵 JP 日本": /日本|广日/,
+    "🇰🇷 KR 韩国": /韩国/,
+    "🇳🇱 NL 荷兰": /荷兰/,
+    "🇷🇺 RU 俄罗斯": /俄罗斯/,
+    "🇷🇺 SG 新加坡": /新加坡|广新/,
+    "🇹🇭 TH 泰国": /泰国/,
+    "🇹🇷 TR 土耳其": /土耳其/,
+    "🇹🇼 TW 台湾": /台湾|广台/,
+    "🇺🇸 US 美国": /美国|广美/,
+  },
+  "NTHU.CC": {
+    "🇬🇧 UK 英国": /英国/,
+    "🇭🇰 HK 香港": /香港/,
+    "🇯🇵 JP 日本": /东京/,
+    "🇰🇷 KR 韩国": /韩国/,
+    "🇷🇺 SG 新加坡": /新加坡/,
+    "🇹🇷 TR 土耳其": /土耳其/,
+    "🇹🇼 TW 台湾": /台湾/,
+    "🇺🇸 US 美国": /美国/,
+    "💬 OpenAI": /GPT/,
+  },
   default: {
     "🇦🇷 AR 阿根廷": /🇦🇷|\bAR\b|阿根廷/i,
     "🇦🇺 AU 澳大利亚": /🇦🇺|\bAU\b|澳大利亚/i,

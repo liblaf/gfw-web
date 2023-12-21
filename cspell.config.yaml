@@ -1,12 +1,14 @@
 words:
   - apiv
   - gomod
+  - gvisor
   - liblaf
   - lipulai
   - nthu
 ignorePaths:
   - "*-lock.*"
   - "*.lock"
+  - cspell.config.yaml
 dictionaries:
   - bash
   - cpp
