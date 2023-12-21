@@ -9,7 +9,7 @@ export const runtime = "edge";
 const OPEN_AI_EXCLUDE = new Set([
   "🇭🇰 HK 香港",
   "🇷🇺 RU 俄罗斯",
-  // "🇹🇼 TW 台湾",
+  "🇹🇼 TW 台湾",
   "🇺🇦 UA 乌克兰",
 ]);
 
