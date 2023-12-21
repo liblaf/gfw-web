@@ -6,12 +6,7 @@ import { fetchOutbounds } from "./group";
 
 export const runtime = "edge";
 
-const OPEN_AI_EXCLUDE = new Set([
-  "🇭🇰 HK 香港",
-  "🇷🇺 RU 俄罗斯",
-  "🇹🇼 TW 台湾",
-  "🇺🇦 UA 乌克兰",
-]);
+const OPEN_AI_INCLUDE = new Set(["🇺🇸 US 美国"]);
 
 export async function GET(request: NextRequest) {
   const sub: string[] =
@@ -75,7 +70,7 @@ export async function GET(request: NextRequest) {
     } else {
       proxy.outbounds.push(group);
       auto.outbounds.push(group);
-      if (!OPEN_AI_EXCLUDE.has(group)) open_ai.outbounds.push(group);
+      if (OPEN_AI_INCLUDE.has(group)) open_ai.outbounds.push(group);
       config.outbounds.push({
         type: "urltest",
         tag: group,

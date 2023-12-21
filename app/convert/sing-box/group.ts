@@ -58,7 +58,6 @@ const GROUP_PATTERNS: Record<string, Record<string, RegExp>> = {
     "🇹🇷 TR 土耳其": /土耳其/,
     "🇹🇼 TW 台湾": /台湾/,
     "🇺🇸 US 美国": /美国/,
-    "💬 OpenAI": /GPT/,
   },
   default: {
     "🇦🇷 AR 阿根廷": /🇦🇷|\bAR\b|阿根廷/i,
