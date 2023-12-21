@@ -59,8 +59,8 @@ export async function GET(request: NextRequest) {
     (outbound: Outbound): boolean => outbound.tag == "💬 OpenAI",
   ) as URLTest;
   for (const group in outbounds) {
-    proxy.outbounds.push(group);
     if (group == "🏳️‍🌈 OT 其他") {
+      proxy.outbounds.push(group);
       config.outbounds.push({
         type: "selector",
         tag: group,
@@ -73,6 +73,7 @@ export async function GET(request: NextRequest) {
         ...outbounds[group].map((outbound: Outbound): string => outbound.tag),
       );
     } else {
+      proxy.outbounds.push(group);
       auto.outbounds.push(group);
       if (!OPEN_AI_EXCLUDE.has(group)) open_ai.outbounds.push(group);
       config.outbounds.push({
