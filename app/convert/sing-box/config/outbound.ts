@@ -1,16 +1,35 @@
 import { TEST_URL } from "@/app/convert/urls";
 
-export type Outbound = IOutBound | HTTP | Selector | URLTest;
+export type Outbound =
+  | IOutBound
+  | Direct
+  | Block
+  | HTTP
+  | DNS
+  | Selector
+  | URLTest;
 
 interface IOutBound {
-  tag: string;
   type: string;
+  tag: string;
+}
+
+interface Direct extends IOutBound {
+  type: "direct";
+}
+
+interface Block extends IOutBound {
+  type: "block";
 }
 
 interface HTTP extends IOutBound {
   type: "http";
   server: string;
   server_port: number;
+}
+
+interface DNS extends IOutBound {
+  type: "dns";
 }
 
 export interface Selector extends IOutBound {
@@ -47,6 +66,12 @@ export function template(): Outbound[] {
       url: TEST_URL,
     },
     {
+      type: "http",
+      tag: "☁️ WARP",
+      server: "127.0.0.1",
+      server_port: 40000,
+    },
+    {
       type: "direct",
       tag: "DIRECT",
     },
@@ -57,12 +82,6 @@ export function template(): Outbound[] {
     {
       type: "dns",
       tag: "out-dns",
-    },
-    {
-      type: "http",
-      tag: "☁️ WARP",
-      server: "127.0.0.1",
-      server_port: 40000,
     },
   ];
 }

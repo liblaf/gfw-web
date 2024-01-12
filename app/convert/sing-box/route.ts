@@ -8,7 +8,7 @@ export const runtime = "edge";
 
 const OPEN_AI_INCLUDE = new Set(["🇺🇸 US 美国"]);
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest): Promise<NextResponse> {
   const sub: string[] =
     request.nextUrl.searchParams.get("sub")?.split("|") || [];
   const outbounds: Record<string, Outbound[]> = (
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     (
       previous: Record<string, Outbound[]>,
       current: Record<string, Outbound[]>,
-    ) => {
+    ): Record<string, Outbound[]> => {
       for (const group in current) {
         if (!previous[group]) previous[group] = [];
         previous[group].push(...current[group]);
@@ -31,19 +31,8 @@ export async function GET(request: NextRequest) {
     },
     {},
   );
-  const config: Config = template();
   const tun: boolean = request.nextUrl.searchParams.get("tun") == "true";
-  if (tun) {
-    config.inbounds.push({
-      type: "tun",
-      tag: "tun-in",
-      inet4_address: "172.19.0.1/30",
-      auto_route: true,
-      strict_route: true,
-      stack: "mixed",
-      sniff: true,
-    });
-  }
+  const config: Config = template({ tun: tun });
   const proxy: Selector = config.outbounds.find(
     (outbound: Outbound): boolean => outbound.tag == "PROXY",
   ) as Selector;

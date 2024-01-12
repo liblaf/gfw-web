@@ -3,7 +3,7 @@ import * as experimental from "./experimental";
 import * as inbound from "./inbound";
 import * as log from "./log";
 import * as outbound from "./outbound";
-import * as route from "./_route";
+import * as route from "./route_";
 
 export interface Config {
   log: log.Log;
@@ -14,11 +14,11 @@ export interface Config {
   experimental: experimental.Experimental;
 }
 
-export function template(): Config {
+export function template(config: { tun: boolean } = { tun: false }): Config {
   return {
     log: log.template(),
     dns: dns.template(),
-    inbounds: inbound.template(),
+    inbounds: inbound.template({ tun: config.tun }),
     outbounds: outbound.template(),
     route: route.template(),
     experimental: experimental.template(),

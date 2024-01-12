@@ -97,18 +97,24 @@ export async function fetchOutbounds(
   url.searchParams.set("target", "singbox");
   const response = await fetch(url);
   const config: Config = await response.json();
-  const outbounds = config.outbounds
-    .filter((outbound: Outbound) => !FILTER_OUT_TYPES.has(outbound.type))
-    .map((outbound: Outbound) => {
+  const outbounds: Outbound[] = config.outbounds
+    .filter(
+      (outbound: Outbound): boolean => !FILTER_OUT_TYPES.has(outbound.type),
+    )
+    .map((outbound: Outbound): Outbound => {
       outbound.tag = tw2cn(outbound.tag);
       return outbound;
     });
-  const provider = PROVIDERS[sub.hostname] || sub.hostname;
-  const group_pattern = GROUP_PATTERNS[provider] || GROUP_PATTERNS.default;
+  const provider: string = PROVIDERS[sub.hostname] || sub.hostname;
+  const group_pattern: Record<string, RegExp> =
+    GROUP_PATTERNS[provider] || GROUP_PATTERNS.default;
   return outbounds.reduce(
-    (previous: Record<string, Outbound[]>, current: Outbound) => {
-      const group =
-        Object.keys(group_pattern).find((key) => {
+    (
+      previous: Record<string, Outbound[]>,
+      current: Outbound,
+    ): Record<string, Outbound[]> => {
+      const group: string =
+        Object.keys(group_pattern).find((key: string): boolean => {
           return group_pattern[key].test(current.tag);
         }) || "🏳️‍🌈 OT 其他";
       if (!previous[group]) previous[group] = [];
