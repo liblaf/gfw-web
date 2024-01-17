@@ -1,3 +1,28 @@
+# GFW
+
+Across the Great Wall we can reach every corner in the world
+
+## API
+
+### `GET /`
+
+Used for latency test.
+
+**Code**: `204 No Content`
+
+### `GET /proxy/[...path]`
+
+Proxy requests to the target URL.
+
+### `GET /convert/sing-box`
+
+| Name  | Location | Type      | Default | Description                         |
+| ----- | -------- | --------- | ------- | ----------------------------------- |
+| `sub` | query    | `string`  |         | subscription URLs seperated by `\|` |
+| `tun` | query    | `boolean` | `false` | whether to add TUN inbound          |
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

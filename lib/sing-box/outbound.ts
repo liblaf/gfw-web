@@ -1,4 +1,4 @@
-import { TEST_URL } from "@/app/convert/urls";
+import { TEST_URL } from "@/lib/urls";
 
 export type Outbound =
   | IOutBound

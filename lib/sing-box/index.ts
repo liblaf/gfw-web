@@ -3,7 +3,7 @@ import * as experimental from "./experimental";
 import * as inbound from "./inbound";
 import * as log from "./log";
 import * as outbound from "./outbound";
-import * as route from "./route_";
+import * as route from "./route";
 
 export interface Config {
   log: log.Log;

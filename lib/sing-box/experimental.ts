@@ -1,4 +1,4 @@
-import { proxy } from "@/app/convert/urls";
+import { proxy } from "@/lib/urls";
 
 export interface Experimental {
   cache_file?: CacheFile;

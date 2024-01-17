@@ -1,7 +1,7 @@
 import { tw2cn } from "cjk-conv";
-import { SUB_API } from "../urls";
-import { Config } from "./config";
-import { Outbound } from "./config/outbound";
+import { SUB_API } from "@/lib/urls";
+import { Config } from ".";
+import { Outbound } from "./outbound";
 
 const FILTER_OUT_TYPES = new Set([
   "direct",
