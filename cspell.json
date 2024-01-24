@@ -1,0 +1,17 @@
+{
+  "words": ["apiv", "fdfe", "gomod", "gvisor", "liblaf", "lipulai", "nthu"],
+  "ignorePaths": ["*-lock.*", "*.lock", "cspell.json"],
+  "dictionaries": [
+    "bash",
+    "cpp",
+    "cpp-legacy",
+    "cpp-refined",
+    "dotnet",
+    "en-gb",
+    "makefile",
+    "npm",
+    "php",
+    "typescript"
+  ],
+  "allowCompoundWords": true
+}

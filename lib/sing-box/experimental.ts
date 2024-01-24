@@ -26,10 +26,10 @@ export function template(): Experimental {
     clash_api: {
       external_controller: "127.0.0.1:9090",
       external_ui: "ui",
-      external_ui_download_detour: proxy(
+      external_ui_download_url: proxy(
         "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
       ),
-      external_ui_download_url: "DIRECT",
+      external_ui_download_detour: "DIRECT",
     },
   };
 }
