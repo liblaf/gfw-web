@@ -8,7 +8,9 @@ Across the Great Wall we can reach every corner in the world
 
 Used for latency test.
 
-**Code**: `204 No Content`
+**Response**:
+
+- **Code**: `204 No Content`
 
 ### `GET /proxy/[...path]`
 
@@ -19,6 +21,7 @@ Proxy requests to the target URL.
 | Name  | Location | Type      | Default | Description                         |
 | ----- | -------- | --------- | ------- | ----------------------------------- |
 | `sub` | query    | `string`  |         | subscription URLs seperated by `\|` |
+| `dns` | query    | `string`  | `tuna`  | DNS for outbounds                   |
 | `tun` | query    | `boolean` | `false` | whether to add TUN inbound          |
 
 ---

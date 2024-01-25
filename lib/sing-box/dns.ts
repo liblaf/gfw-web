@@ -36,7 +36,13 @@ export function template({ dns }: Args = { dns: "tuna" }): DNS {
       {
         tag: "dns-cloudflare",
         address: "https://cloudflare-dns.com/dns-query",
-        address_resolver: "dns-tuna",
+        address_resolver: dns,
+        detour: "PROXY",
+      },
+      {
+        tag: "dns-dns-sb",
+        address: "https://doh.dns.sb/dns-query",
+        address_resolver: dns,
         detour: "PROXY",
       },
       {
