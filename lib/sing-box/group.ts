@@ -1,4 +1,4 @@
-import { tw2cn } from "cjk-conv";
+import { traditionToSimple } from "chinese-simple2traditional";
 import { SUB_API } from "@/lib/urls";
 import { Config } from ".";
 import { Outbound } from "./outbound";
@@ -102,7 +102,7 @@ export async function fetchOutbounds(
       (outbound: Outbound): boolean => !FILTER_OUT_TYPES.has(outbound.type),
     )
     .map((outbound: Outbound): Outbound => {
-      outbound.tag = tw2cn(outbound.tag);
+      outbound.tag = traditionToSimple(outbound.tag);
       return outbound;
     });
   const provider: string = PROVIDERS[sub.hostname] || sub.hostname;

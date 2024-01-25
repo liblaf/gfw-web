@@ -1,31 +1,36 @@
-export interface DNS {
+export type DNS = {
   servers?: Server[];
   rules?: Rule[];
   final?: string;
-}
+};
 
-interface Server {
+type Server = {
   tag?: string;
   address: string;
   address_resolver?: string;
   detour?: string;
-}
+};
 
 // (domain || domain_suffix || domain_keyword || domain_regex || geosite) &&
 // (port || port_range) &&
 // (source_geoip || source_ip_cidr || source_ip_is_private) &&
 // (source_port || source_port_range) &&
 // other fields
-interface Rule {
+type Rule = {
   geosite?: string[];
   clash_mode?: string;
   rule_set?: string[];
   outbound?: string[];
   server: string;
   disable_cache?: boolean;
-}
+};
 
-export function template(): DNS {
+export type Args = {
+  dns: string;
+};
+
+export function template({ dns }: Args = { dns: "tuna" }): DNS {
+  dns = `dns-${dns}`;
   return {
     servers: [
       {
@@ -49,15 +54,15 @@ export function template(): DNS {
       { tag: "dns-block", address: "rcode://success" },
     ],
     rules: [
-      { outbound: ["any"], server: "dns-tuna" },
+      { outbound: ["any"], server: dns },
       {
         rule_set: ["geosite-category-ads-all"],
         server: "dns-block",
         disable_cache: true,
       },
-      { rule_set: ["geoip-cn", "geosite-cn"], server: "dns-tuna" },
-      { clash_mode: "Global", server: "dns-cloudflare" },
-      { clash_mode: "Direct", server: "dns-local" },
+      { rule_set: ["geoip-cn", "geosite-cn"], server: dns },
+      { clash_mode: "global", server: "dns-cloudflare" },
+      { clash_mode: "direct", server: "dns-local" },
     ],
     final: "dns-cloudflare",
   };

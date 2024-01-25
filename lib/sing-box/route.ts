@@ -1,55 +1,55 @@
 import { proxy } from "@/lib/urls";
 
-export interface Route {
+export type Route = {
   geoip?: GeoIP;
   geosite?: GeoSite;
   rules?: RouteRule[];
   rule_set?: RuleSet[];
   final?: string;
-}
+};
 
-interface GeoIP {
+type GeoIP = {
   download_url?: string;
   download_detour?: string;
-}
+};
 
-interface GeoSite {
+type GeoSite = {
   download_url?: string;
   download_detour?: string;
-}
+};
 
 // (domain || domain_suffix || domain_keyword || domain_regex || geosite || geoip || ip_cidr || ip_is_private) &&
 // (port || port_range) &&
 // (source_geoip || source_ip_cidr || source_ip_is_private) &&
 // (source_port || source_port_range) &&
 // other fields
-interface RouteRule {
+type RouteRule = {
   protocol?: string[];
   domain_suffix?: string[];
   ip_is_private?: boolean;
   clash_mode?: string;
   rule_set?: string[];
   outbound: string;
-}
+};
 
 type RuleSet = RuleSetLocal | RuleSetRemote;
 
-interface IRuleSet {
+type RuleSetBase = {
   type: "local" | "remote";
   tag: string;
   format: "source" | "binary";
-}
+};
 
-interface RuleSetLocal extends IRuleSet {
+type RuleSetLocal = RuleSetBase & {
   type: "local";
   path: string;
-}
+};
 
-interface RuleSetRemote extends IRuleSet {
+type RuleSetRemote = RuleSetBase & {
   type: "remote";
   url: string;
   download_detour?: string;
-}
+};
 
 export function template(): Route {
   return {
@@ -69,11 +69,11 @@ export function template(): Route {
         outbound: "DIRECT",
       },
       {
-        clash_mode: "Global",
+        clash_mode: "global",
         outbound: "PROXY",
       },
       {
-        clash_mode: "Direct",
+        clash_mode: "direct",
         outbound: "DIRECT",
       },
       {

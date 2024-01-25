@@ -1,7 +1,7 @@
 import { TEST_URL } from "@/lib/urls";
 
 export type Outbound =
-  | IOutBound
+  | OutBoundBase
   | Direct
   | Block
   | HTTP
@@ -9,54 +9,54 @@ export type Outbound =
   | Selector
   | URLTest;
 
-interface IOutBound {
+type OutBoundBase = {
   type: string;
   tag: string;
-}
+};
 
-interface Direct extends IOutBound {
+type Direct = OutBoundBase & {
   type: "direct";
-}
+};
 
-interface Block extends IOutBound {
+type Block = OutBoundBase & {
   type: "block";
-}
+};
 
-interface HTTP extends IOutBound {
+type HTTP = OutBoundBase & {
   type: "http";
   server: string;
   server_port: number;
-}
+};
 
-interface DNS extends IOutBound {
+type DNS = OutBoundBase & {
   type: "dns";
-}
+};
 
-export interface Selector extends IOutBound {
+export type Selector = OutBoundBase & {
   type: "selector";
   outbounds: string[];
   default?: string;
-}
+};
 
-export interface URLTest extends IOutBound {
+export type URLTest = OutBoundBase & {
   type: "urltest";
   outbounds: string[];
   url?: string;
   interval?: string;
-}
+};
 
 export function template(): Outbound[] {
   return [
     {
       type: "selector",
       tag: "PROXY",
-      outbounds: ["🚀 AUTO", "💬 OpenAI", "☁️ WARP"],
+      outbounds: ["🚀 AUTO", "💬 OpenAI"],
       default: "🚀 AUTO",
     },
     {
       type: "urltest",
       tag: "🚀 AUTO",
-      outbounds: ["☁️ WARP"],
+      outbounds: [],
       url: TEST_URL,
     },
     {
@@ -64,12 +64,6 @@ export function template(): Outbound[] {
       tag: "💬 OpenAI",
       outbounds: [],
       url: TEST_URL,
-    },
-    {
-      type: "http",
-      tag: "☁️ WARP",
-      server: "127.0.0.1",
-      server_port: 40000,
     },
     {
       type: "direct",

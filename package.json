@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "cjk-conv": "^1.2.143",
+    "chinese-simple2traditional": "^1.2.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"

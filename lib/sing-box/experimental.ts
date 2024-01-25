@@ -1,22 +1,22 @@
 import { proxy } from "@/lib/urls";
 
-export interface Experimental {
+export type Experimental = {
   cache_file?: CacheFile;
   clash_api?: ClashAPI;
-}
+};
 
-interface CacheFile {
+type CacheFile = {
   enabled?: boolean;
-}
+};
 
-interface ClashAPI {
+type ClashAPI = {
   external_controller?: string;
   external_ui?: string;
   external_ui_download_url?: string;
   external_ui_download_detour?: string;
   secret?: string;
   default_mode?: string;
-}
+};
 
 export function template(): Experimental {
   return {

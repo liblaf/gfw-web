@@ -1,30 +1,36 @@
-export type Inbound = IInbound | Mixed | TUN;
+export type Inbound = InboundBase | Mixed | TUN;
 
-interface ListenFields {
+type ListenFields = {
   listen?: string;
   listen_port?: number;
   sniff?: boolean;
-}
+};
 
-interface IInbound {
+type InboundBase = {
   type: string;
   tag: string;
-}
+};
 
-interface Mixed extends IInbound, ListenFields {
-  type: "mixed";
-}
+type Mixed = InboundBase &
+  ListenFields & {
+    type: "mixed";
+  };
 
-interface TUN extends IInbound, ListenFields {
-  type: "tun";
-  inet4_address: string;
-  inet6_address?: string;
-  auto_route?: boolean;
-  strict_route?: boolean;
-  stack?: "system" | "gvisor" | "mixed";
-}
+type TUN = InboundBase &
+  ListenFields & {
+    type: "tun";
+    inet4_address: string;
+    inet6_address?: string;
+    auto_route?: boolean;
+    strict_route?: boolean;
+    stack?: "system" | "gvisor" | "mixed";
+  };
 
-export function template(config: { tun: boolean } = { tun: false }): Inbound[] {
+export type Args = {
+  tun: boolean;
+};
+
+export function template({ tun }: Args = { tun: false }): Inbound[] {
   return [
     {
       type: "mixed",
@@ -32,7 +38,7 @@ export function template(config: { tun: boolean } = { tun: false }): Inbound[] {
       listen: "127.0.0.1",
       listen_port: 2080,
     },
-    ...(config.tun
+    ...(tun
       ? [
           {
             type: "tun",

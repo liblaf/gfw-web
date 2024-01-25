@@ -31,8 +31,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     },
     {},
   );
+  const dns: string = request.nextUrl.searchParams.get("dns") || "tuna";
   const tun: boolean = request.nextUrl.searchParams.get("tun") == "true";
-  const config: Config = template({ tun: tun });
+  const config: Config = template({ dns: dns, tun: tun });
   const proxy: Selector = config.outbounds.find(
     (outbound: Outbound): boolean => outbound.tag == "PROXY",
   ) as Selector;
