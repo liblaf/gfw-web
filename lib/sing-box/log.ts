@@ -7,6 +7,8 @@ export type Log = {
 
 export function template(): Log {
   return {
+    disabled: false,
     level: "info",
+    timestamp: true,
   };
 }
