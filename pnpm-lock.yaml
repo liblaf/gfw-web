@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   chinese-simple2traditional:
-    specifier: ^1.2.0
-    version: 1.2.0
+    specifier: ^2.0.0
+    version: 2.0.0
   next:
     specifier: 14.1.4
     version: 14.1.4(react-dom@18.2.0)(react@18.2.0)
@@ -665,8 +665,8 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chinese-simple2traditional@1.2.0:
-    resolution: {integrity: sha512-0DbXpBBOZzQBklJb/6ykZzsw0ykay95JK3byoQG+YAlFzJn+G6aIPNPQk3/T+whxSJm5J384xLsvQY77km6inA==}
+  /chinese-simple2traditional@2.0.0:
+    resolution: {integrity: sha512-aYYSKGOQmel2EFPzrNl1rcBo/3aThoZsvj52rC/HPBNdmfLJARKKQmE+h6km3q0PTfs43rEFvtxKT0sqUaceMQ==}
     dev: false
 
   /chokidar@3.5.3:
